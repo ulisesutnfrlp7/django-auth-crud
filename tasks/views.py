@@ -63,7 +63,7 @@ def signout(request):
     logout(request)
     return redirect('home')
 
-def signin(request):
+# def signin(request):
     if request.method == 'GET':
         context = {
         'form': AuthenticationForm()
@@ -80,7 +80,21 @@ def signin(request):
         else:
             login(request, user)
             return redirect('tasks')
-        
+
+def signin(request):
+    if request.method == 'GET':
+        return render(request, 'signin.html', {'form': AuthenticationForm()})
+    else:
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('tasks')
+        else:
+            return render(request, 'signin.html', {
+                'form': form,
+                'error': 'Username and password do not match'
+            })
 
 @login_required
 def create_task(request):
