@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="text-center">Create Task</h1>
+
+<form method="POST" class="mt-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+{% endblock %}

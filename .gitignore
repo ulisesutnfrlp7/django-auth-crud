@@ -1,0 +1,5 @@
+# Este archivo se utiliza para indicar a Git qué archivos o directorios deben ser ignorados y no incluidos en el control de versiones. Es importante configurar este archivo correctamente para evitar subir archivos sensibles o innecesarios al repositorio, como archivos de configuración, bases de datos, entornos virtuales, entre otros.
+
+db.sqlite3
+venv
+__pycache__

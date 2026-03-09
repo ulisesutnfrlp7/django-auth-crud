@@ -1,0 +1,51 @@
+<!-- tasks/templates/task_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>
+    Task Detail
+</h1>
+
+<ul class="list-group mt-4">
+    <li class="list-group-item">
+        <h2>
+            {{ task.title }}
+        </h2>
+        <p>
+            {{ task.description }}
+        </p>
+        <p>
+            Created on: {{ task.created }}
+        </p>
+        {% if task.datecompleted %}
+            <p>
+                Completed on: {{ task.datecompleted }}
+            </p>
+        {% else %}
+            <p>
+                Not completed yet.
+            </p>
+        {% endif %}
+        {% if task.important %}
+            <span class="badge bg-danger"> ¡IMPORTANT! </span>
+        {% endif %}
+    </li>
+    <h1>
+        ----------------------------
+    </h1>
+    <!-- aca abajo va el formulario para actualizar la tarea -->
+    <li class="list-group-item">
+        <h2>
+            Update Task
+        </h2>
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </li>
+</ul>
+
+{% endblock %}
